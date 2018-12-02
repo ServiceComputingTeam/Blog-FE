@@ -1,0 +1,9 @@
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  background-color: '#fff';
+  max-width: 1200px;
+  min-width: 720px;
+}
