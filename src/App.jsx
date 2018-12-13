@@ -5,9 +5,9 @@ import './App.css';
 import BlogListPage from './BlogListPage'
 import BlogPage from './BlogPage'
 import NewBlogPage from './NewBlogPage'
-import LoginForm from './components/LoginForm';
+import LoginButton from './components/LoginButton';
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 
 class App extends Component {
   render() {
@@ -21,18 +21,21 @@ class App extends Component {
               theme='dark'
               mode='horizontal'
               defaultSelectedKeys={['0']}
-              style={{ lineHeight: '64px' }}
+              className="menu-block"
             >
               <Menu.Item key='BlogListPage'>
                 <Link to='/'>首页</Link>
               </Menu.Item>
+              <Menu.Item className='user-button' >
+                <LoginButton />
+              </Menu.Item>
             </Menu>
-            <LoginForm className="user-button" />
+
           </Header>
-          <Content>
+          <Content className="main-content">
             <Route path='/' exact component={BlogListPage} />
             <Route path='/Blogs' exact component={BlogListPage} />
-            <Route path='/Blogs/:id' exact component={BlogPage} />
+            <Route path='/Blogs/:username/:title' exact component={BlogPage} />
             <Route path='/New/Blog' exact component={NewBlogPage} />
           </Content>
         </Layout>
@@ -40,5 +43,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;

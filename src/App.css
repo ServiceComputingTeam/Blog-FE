@@ -1,6 +1,22 @@
 @import '~antd/dist/antd.css';
 
 .user-button {
-  position: relative;
-  margin-right: 16px;
+  float: right;
+}
+
+.menu-block {
+  line-height: 64px;
+}
+
+.main-content {
+  max-width: 1200px;
+  min-width: 960px;
+  margin-top: 48px;
+  margin-right: auto;
+  margin-left: auto;
+
+}
+
+.layout {
+  height: 100%;
 }
