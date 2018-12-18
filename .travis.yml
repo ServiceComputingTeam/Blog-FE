@@ -3,6 +3,7 @@ node_js:
   - "10"
 servies:
   - docker
+install: npm install
 script:
   - docker pull nginx:latest
   - npm run docker-export
