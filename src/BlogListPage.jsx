@@ -1,40 +1,40 @@
 import React, { Component } from 'react'
-import { Card, List } from 'antd'
+import { Card, List, Skeleton } from 'antd'
+import { apiClient } from './utils/api'
+import BlogList from './components/BlogList'
 import './BlogListPage.css'
-const artical = {
-  title: "Title",
-  author: "Author",
-  time: "2017.10.20",
-  content: "Test"
-}
-const BlogCard = (blog) => {
-  return (
-    <List.Item className="Card">
-      <List.Item.Meta title={blog.title} description={`${blog.author}  ${blog.time}`} />
-      {blog.content}
-    </List.Item>
-  )
-}
-let blogs = []
-for (let i = 0; i < 5; i++) {
-  blogs.push(artical)
-}
+
 class BlogListPage extends Component {
+  state = {
+    loading: true,
+    blogs: [],
+  }
+  componentDidMount() {
+    apiClient.getAllBlogs().then(blogs => {
+      if (blogs) {
+        this.setState({
+          blogs,
+          loading: false,
+        })
+      } else {
+
+      }
+    })
+  }
   render() {
-    return (
-      <Card>
-        <List
-          itemLayout='vertical'
-          dataSource={blogs}
-          size="small"
-          renderItem={item => (
-            BlogCard(item)
-          )}
-        >
-        </List>
-      </Card>
-    );
+    if (this.state.blogs) {
+      return (
+        <BlogList
+          blogs={this.state.blogs}
+        />
+      );
+    } else {
+      return (
+        <Skeleton active={true} />
+      )
+    }
   }
 }
+
 
 export default BlogListPage;

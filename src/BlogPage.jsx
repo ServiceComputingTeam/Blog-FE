@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import * as api from './utils/api'
-import { Skeleton, Card } from 'antd'
-import BraftEditor from "braft-editor";
+import { apiClient } from './utils/api'
+import { Skeleton, Card, List, Tag } from 'antd'
+import BraftEditor from 'braft-editor';
+import ErrorDisplay from './components/ErrorDisplay'
 import './BlogPage.css'
 import 'braft-editor/dist/index.css'
 
@@ -10,23 +11,33 @@ class BlogPage extends Component {
     loading: true,
     editorState: null,
   }
-  constructor(props) {
-    super(props)
-    this.id = this.props.match.params.id
-    this.blog = {}
-    api.getBlog(this.id).then((blog) => {
-      this.blog = blog
-      this.setState({
-        loading: false,
-        editorState: BraftEditor.createEditorState(this.blog.content),
-      })
-
+  componentDidMount() {
+    const username = this.props.match.params.username
+    const title = this.props.match.params.title
+    apiClient.getBlogByTitle(username, title).then((blog) => {
+      if (blog) {
+        this.blog = blog
+        this.setState({
+          loading: false,
+          editorState: BraftEditor.createEditorState(this.blog.content),
+        })
+      } else {
+        this.setState({
+          loading: false,
+        })
+      }
     })
   }
   render() {
     if (this.state.loading) {
       return (
-        <Skeleton active />
+        <Card>
+          <Skeleton active />
+        </Card>
+      )
+    } else if (this.blog == null) {
+      return (
+        <ErrorDisplay />
       )
     } else {
       return (
@@ -40,17 +51,38 @@ class BlogPage extends Component {
               <div>
                 {this.blog.time}
               </div>
+              {renderLabels(this.blog.labels)}
             </div>
             <BraftEditor
               controls={[]}
               value={this.state.editorState}
             />
           </article>
+          <List
+            itemLayout="horizontal"
+            dataSource={this.blog.reviews}
+            renderItem={item => (
+              <List.Item>
+                <List.Item.Meta
+                  title={<a>{item.reviewer}</a>}
+                  description={item.content}
+                />
+              </List.Item>
+            )}
+          />
         </Card>
       )
     }
   }
 }
-
+const renderLabels = (labels) => {
+  return (
+    <div>
+      {labels.map(label =>
+        (<Tag><a href={`/labels/${label}/blogs`}>{label}</a></Tag>)
+      )}
+    </div>
+  )
+}
 
 export default BlogPage

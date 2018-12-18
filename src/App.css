@@ -1,22 +1,30 @@
 @import '~antd/dist/antd.css';
 
 .user-button {
-  float: right;
+    float: right;
 }
 
 .menu-block {
-  line-height: 64px;
+    line-height: 64px;
 }
 
 .main-content {
-  max-width: 1200px;
-  min-width: 960px;
-  margin-top: 48px;
-  margin-right: auto;
-  margin-left: auto;
+    max-width: 1200px;
+    min-width: 960px;
+    margin-top: 48px;
+    margin-right: auto;
+    margin-left: auto;
 
 }
 
 .layout {
-  height: 100%;
+    height: auto;
+    min-height: 100%;
+}
+
+.affix {
+    position: absolute;
+    bottom: 48px;
+    right: 48px;
+    transform: scale(1.5)
 }
