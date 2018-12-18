@@ -1,0 +1,18 @@
+language: node_js
+node_js：
+  - '10'
+servies:
+  - docker
+script:
+  - docker pull nginx:latest
+  - npm install
+  - npm run docker-export
+deploy:
+  provider: release
+  skip_cleanup: true
+  file: "app.tar"
+  api_key:
+    secure: $GITHUB_TOKEN
+  on:
+    tags: true
+    branch: master
