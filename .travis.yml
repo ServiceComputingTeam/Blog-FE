@@ -1,11 +1,10 @@
 language: node_js
-node_js：
-  - '10'
+node_js:
+  - "10"
 servies:
   - docker
 script:
   - docker pull nginx:latest
-  - npm install
   - npm run docker-export
 deploy:
   provider: release
