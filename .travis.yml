@@ -6,6 +6,7 @@ servies:
 install: npm install
 script:
   - docker pull nginx:latest
+  - npm build
   - npm run docker-export
 deploy:
   provider: release
