@@ -7,10 +7,6 @@ class LoginButton extends Component {
     onLoading: false,
     login: true,
   }
-  formValue = {}
-  handleOk = () => {
-
-  }
   handleCancel = () => {
     this.setState({
       modalOn: false,
