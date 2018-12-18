@@ -1,11 +1,12 @@
 import axios from 'axios'
 
+const apiUrl = '/api';
 class ApiClient {
     axiosInstance
     jwtToken
-    constructor() {
+    constructor(url) {
         this.axiosInstance = axios.create({
-            baseURL: 'https://localhost::8000/api/',
+            baseURL: url,
             timeout: 5000,
         })
     }
@@ -133,4 +134,4 @@ const delay = (time) => {
         setTimeout(() => resolve(), time)
     })
 }
-export const apiClient = new ApiClient();
+export const apiClient = new ApiClient(apiUrl);
