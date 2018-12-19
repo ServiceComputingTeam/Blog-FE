@@ -16,4 +16,3 @@ deploy:
     secure: $GITHUB_TOKEN
   on:
     tags: true
-    branch: master
