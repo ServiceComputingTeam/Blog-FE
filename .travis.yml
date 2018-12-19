@@ -12,7 +12,6 @@ deploy:
   provider: release
   skip_cleanup: true
   file: "app.tar"
-  api_key:
-    secure: $GITHUB_TOKEN
+  api_key: $GITHUB_TOKEN
   on:
     tags: true
