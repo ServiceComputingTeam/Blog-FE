@@ -9,7 +9,7 @@ script:
   - npm run build
   - npm run docker-export
 deploy:
-  provider: release
+  provider: releases
   skip_cleanup: true
   file: "app.tar"
   api_key: $GITHUB_TOKEN
