@@ -64,7 +64,7 @@ class BlogPage extends Component {
             renderItem={item => (
               <List.Item>
                 <List.Item.Meta
-                  title={<a>{item.reviewer}</a>}
+                  title={<a href={`/users/${item.owner}`}>{item.reviewer}</a>}
                   description={item.content}
                 />
               </List.Item>

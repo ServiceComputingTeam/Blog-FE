@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Card, Button, message, Form, Input, Tabs } from "antd"
+import { Card, Button, message, Form, Input } from "antd"
 import { apiClient } from '../utils/api'
 import './LoginForm.css'
 class LoginFormUnwrapped extends Component {
@@ -81,7 +81,7 @@ class LoginFormUnwrapped extends Component {
             </Button>
           </Form.Item>
         </Form>
-        <a onClick={this.props.toggleLogin}>{this.props.login ? "注册新用户" : "返回登录"}</a>
+        <button className="link-button" onClick={this.props.toggleLogin}>{this.props.login ? "注册新用户" : "返回登录"}</button>
       </Card>
     )
   }

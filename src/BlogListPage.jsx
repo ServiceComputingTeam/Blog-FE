@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, List, Skeleton } from 'antd'
+import { Skeleton } from 'antd'
 import { apiClient } from './utils/api'
 import BlogList from './components/BlogList'
 import './BlogListPage.css'

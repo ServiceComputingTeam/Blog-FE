@@ -14,7 +14,7 @@ class ApiClient {
         try {
             const response = await this.axiosInstance.post('users', userData)
             const user = response.data
-            return true
+            return user
         } catch (err) {
             return false
         }
@@ -23,7 +23,7 @@ class ApiClient {
         try {
             const response = await this.axiosInstance.patch('user', userData)
             const user = response.data
-            return true
+            return user
         } catch (err) {
             return false
         }
@@ -104,7 +104,7 @@ class ApiClient {
                 content
             })
             const review = response.review
-            return true
+            return review
         } catch (err) {
             return null
         }
@@ -129,9 +129,9 @@ class ApiClient {
         return this.jwtToken
     }
 }
-const delay = (time) => {
-    return new Promise(resolve => {
-        setTimeout(() => resolve(), time)
-    })
-}
+// const delay = (time) => {
+//     return new Promise(resolve => {
+//         setTimeout(() => resolve(), time)
+//     })
+// }
 export const apiClient = new ApiClient(apiUrl);
